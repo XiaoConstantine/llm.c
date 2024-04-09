@@ -10,7 +10,7 @@ INCLUDES =
 # e.g. on MacOS: brew install libomp
 # e.g. on Ubuntu: sudo apt-get install libomp-dev
 # later, run the program by prepending the number of threads, e.g.: OMP_NUM_THREADS=8 ./gpt2
-ifeq ($(shell echo | $(CC) -fopenmp -x c -E - > /dev/null 2>&1; echo $$?), 0)
+ifeq ($(shell echo | $(CC) -Xpreprocessor -fopenmp -x c -E - > /dev/null 2>&1; echo $$?), 0)
   ifeq ($(shell uname), Darwin)
     # macOS with Homebrew
     CFLAGS += -Xclang -fopenmp -DOMP
